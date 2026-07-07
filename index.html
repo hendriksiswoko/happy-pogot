@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAPPY POGOT | Trip Mancing Bali</title>
+    <meta name="description" content="Landing page trip mancing premium di Pantai Kedonganan, Bali bersama Happy Pogot." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- NAVBAR START -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="#home" class="text-lg sm:text-xl font-semibold tracking-[0.2em] sm:tracking-[0.25em] text-teal-800">HAPPY POGOT</a>
+
+          <nav class="hidden md:flex space-x-6 lg:space-x-8 text-sm font-medium text-gray-700">
+            <a href="#home" class="hover:text-teal-700 transition">Home</a>
+            <a href="#paket" class="hover:text-teal-700 transition">Paket Trip</a>
+            <a href="#galeri" class="hover:text-teal-700 transition">Galeri</a>
+            <a href="#lokasi" class="hover:text-teal-700 transition">Lokasi</a>
+          </nav>
+
+          <a href="#kontak" class="hidden sm:inline-flex items-center px-4 sm:px-5 py-2 rounded-full bg-teal-800 text-white text-sm font-semibold hover:bg-teal-700 transition">
+            Hubungi Kami
+          </a>
+        </div>
+      </div>
+    </header>
+    <!-- NAVBAR END -->
+
+    <!-- HERO START -->
+    <section id="home" class="relative min-h-screen overflow-hidden">
+      <div class="absolute inset-0">
+        <video
+          id="hero-video-1"
+          class="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80"
+        >
+          <source src="hero-video.mp4" type="video/mp4" />
+        </video>
+
+        <video
+          id="hero-video-2"
+          class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1600&q=80"
+        >
+          <source src="hero-video-2.mp4" type="video/mp4" />
+        </video>
+
+        <video
+          id="hero-video-3"
+          class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80"
+        >
+          <source src="hero-video-3.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <div class="absolute inset-0 bg-black/60"></div>
+
+      <div class="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl text-center text-white py-16 sm:py-0">
+          <p class="text-xs sm:text-sm uppercase tracking-[0.25em] sm:tracking-[0.35em] text-teal-300 mb-3 sm:mb-4">Trip Mancing Premium di Bali</p>
+          <h1 class="text-3xl sm:text-5xl lg:text-7xl font-semibold leading-tight mb-4 sm:mb-6">
+            Rasakan Sensasi Mancing Terbaik di Bali Bersama Happy Pogot
+          </h1>
+          <p class="text-base sm:text-xl text-gray-200 max-w-2xl mx-auto mb-6 sm:mb-8">
+            Petualangan mancing tak terlupakan di Pantai Kedonganan dengan kapten berpengalaman.
+          </p>
+          <a href="https://wa.me/6287860586962?text=Halo%20Happy%20Pogot,%20saya%20ingin%20pesan%20trip%20mancing." target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 sm:px-7 py-3 rounded-full bg-teal-700 text-white text-sm sm:text-base font-semibold hover:bg-teal-600 transition shadow-lg">
+            Pesan Trip Sekarang
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- HERO END -->
+
+    <script>
+      const videos = [
+        document.getElementById('hero-video-1'),
+        document.getElementById('hero-video-2'),
+        document.getElementById('hero-video-3')
+      ];
+
+      let currentVideoIndex = 0;
+
+      function showVideo(index) {
+        videos.forEach((video, i) => {
+          video.classList.toggle('opacity-100', i === index);
+          video.classList.toggle('opacity-0', i !== index);
+        });
+
+        videos.forEach((video, i) => {
+          if (i === index) {
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+
+        currentVideoIndex = index;
+      }
+
+      showVideo(0);
+
+      setInterval(() => {
+        const nextIndex = (currentVideoIndex + 1) % videos.length;
+        showVideo(nextIndex);
+      }, 8000);
+    </script>
+
+    <!-- PAKET TRIP START -->
+    <section id="paket" class="py-16 sm:py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-12">
+          <p class="text-sm uppercase tracking-[0.3em] text-teal-700 font-semibold mb-3">Paket Trip</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900">Pilih Paket yang Sesuai dengan Selera Anda</h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="bg-gray-100 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900">Trip Setengah Hari</h3>
+            <p class="text-sm text-gray-600 mt-3">Ideal untuk liburan santai dan cuaca singkat.</p>
+            <div class="text-3xl sm:text-4xl font-bold text-teal-800 mt-6">Mulai Rp 350.000</div>
+            <ul class="mt-6 space-y-2 text-gray-700">
+              <li>• Alat pancing</li>
+              <li>• Umpan</li>
+              <li>• Air minum</li>
+            </ul>
+            <a href="#kontak" class="mt-8 inline-flex w-full justify-center px-5 py-3 rounded-full bg-teal-800 text-white font-semibold hover:bg-teal-700 transition">
+              Pilih Paket
+            </a>
+          </div>
+
+          <div class="bg-gray-100 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900">Trip Seharian</h3>
+            <p class="text-sm text-gray-600 mt-3">Nikmati pengalaman penuh dengan fasilitas lengkap.</p>
+            <div class="text-3xl sm:text-4xl font-bold text-teal-800 mt-6">Mulai Rp 650.000</div>
+            <ul class="mt-6 space-y-2 text-gray-700">
+              <li>• Fasilitas lengkap</li>
+              <li>• Makan siang</li>
+              <li>• Pendamping kapten</li>
+            </ul>
+            <a href="#kontak" class="mt-8 inline-flex w-full justify-center px-5 py-3 rounded-full bg-teal-800 text-white font-semibold hover:bg-teal-700 transition">
+              Pilih Paket
+            </a>
+          </div>
+
+          <div class="bg-gray-100 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-900">Sewa Kapal Privat</h3>
+            <p class="text-sm text-gray-600 mt-3">Trip custom sesuai kebutuhan kelompok Anda.</p>
+            <div class="text-3xl sm:text-4xl font-bold text-teal-800 mt-6">Custom</div>
+            <ul class="mt-6 space-y-2 text-gray-700">
+              <li>• Custom trip</li>
+              <li>• Fleksibel jadwal</li>
+              <li>• Prioritas kenyamanan</li>
+            </ul>
+            <a href="#kontak" class="mt-8 inline-flex w-full justify-center px-5 py-3 rounded-full bg-teal-800 text-white font-semibold hover:bg-teal-700 transition">
+              Pilih Paket
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- PAKET TRIP END -->
+
+    <!-- GALERI START -->
+    <section id="galeri" class="py-16 sm:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-12">
+          <p class="text-sm uppercase tracking-[0.3em] text-teal-700 font-semibold mb-3">Galeri</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900">Potret Perjalanan dan Hasil Tangkapan</h2>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
+          <div class="aspect-square rounded-2xl border border-dashed border-gray-300 bg-gray-100"></div>
+          <div class="aspect-square rounded-2xl border border-dashed border-gray-300 bg-gray-100"></div>
+          <div class="aspect-square rounded-2xl border border-dashed border-gray-300 bg-gray-100"></div>
+          <div class="aspect-square rounded-2xl border border-dashed border-gray-300 bg-gray-100"></div>
+          <div class="aspect-square rounded-2xl border border-dashed border-gray-300 bg-gray-100"></div>
+          <div class="aspect-square rounded-2xl border border-dashed border-gray-300 bg-gray-100"></div>
+        </div>
+      </div>
+    </section>
+    <!-- GALERI END -->
+
+    <!-- TESTIMONIAL START -->
+    <section class="py-16 sm:py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-12">
+          <p class="text-sm uppercase tracking-[0.3em] text-teal-700 font-semibold mb-3">Testimoni</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900">Apa Kata Pelanggan Kami</h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
+            <p class="text-gray-600">“Trip-nya sangat nyaman, kapten ramah, dan hasil tangkapannya memuaskan.”</p>
+            <div class="mt-6 font-semibold text-gray-900">- Budi, Jakarta</div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
+            <p class="text-gray-600">“Pelayanan profesional dan suasana santai, cocok untuk keluarga.”</p>
+            <div class="mt-6 font-semibold text-gray-900">- Dinda, Bandung</div>
+          </div>
+          <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-200">
+            <p class="text-gray-600">“Saya suka detail fasilitasnya, sangat worth it untuk trip mancing.”</p>
+            <div class="mt-6 font-semibold text-gray-900">- Raka, Surabaya</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- TESTIMONIAL END -->
+
+    <!-- LOKASI START -->
+    <section id="lokasi" class="py-16 sm:py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-12">
+          <p class="text-sm uppercase tracking-[0.3em] text-teal-700 font-semibold mb-3">Lokasi</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900">Pantai Kedonganan, Bali</h2>
+        </div>
+
+        <div class="overflow-hidden rounded-3xl shadow-lg border border-gray-200">
+          <iframe
+            src="https://www.google.com/maps?q=Pantai%20Kedonganan%20Bali&z=13&output=embed"
+            class="w-full h-[280px] sm:h-[420px]"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Lokasi Happy Pogot di Pantai Kedonganan Bali"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+    <!-- LOKASI END -->
+
+    <!-- FOOTER START -->
+    <footer id="kontak" class="bg-teal-900 text-white py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <p class="font-semibold">Copyright © 2026 HAPPY POGOT. All Rights Reserved.</p>
+          <p class="text-sm text-teal-100 mt-1">WhatsApp: +62 812-3456-789 | Email: hello@happypogot.com</p>
+        </div>
+        <a href="#home" class="text-sm text-teal-100 hover:text-white">Kembali ke atas</a>
+      </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <!-- FLOATING WHATSAPP START -->
+    <a
+      href="https://wa.me/628123456789?text=Halo%20Happy%20Pogot,%20saya%20mau%20tanya%20tentang%20trip%20mancing..."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg hover:bg-green-600 transition"
+      aria-label="Hubungi WhatsApp Happy Pogot"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.198.297-.768.967-.941 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.174.199-.297.299-.495.099-.198.049-.372-.025-.521-.074-.149-.67-1.612-.92-2.21-.242-.58-.488-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.521.074-.792.372-.271.297-1.035 1.012-1.035 2.467 0 1.455 1.06 2.862 1.206 3.06.147.198 2.087 3.18 5.062 4.46.707.305 1.257.488 1.689.625.712.227 1.359.195 1.871.118.572-.085 1.758-.719 2.007-1.414.25-.694.25-1.287.174-1.414-.074-.126-.273-.198-.57-.347z"/>
+      </svg>
+    </a>
+    <!-- FLOATING WHATSAPP END -->
+  </body>
+</html>
