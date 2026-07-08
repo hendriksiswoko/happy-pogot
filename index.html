@@ -194,26 +194,6 @@
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900">Potret Perjalanan dan Hasil Tangkapan</h2>
         </div>
 
-        <div class="mb-6 rounded-2xl border border-gray-200 bg-gray-50 p-4">
-          <div id="gallery-auth-form" class="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <input id="gallery-password" type="password" placeholder="Masukkan password admin" class="w-full sm:max-w-xs rounded-full border border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600" />
-            <button id="gallery-login-btn" type="button" class="rounded-full bg-teal-800 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 transition">Buka Upload</button>
-            <button id="gallery-logout-btn" type="button" class="hidden rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 transition">Logout</button>
-          </div>
-          <p id="gallery-auth-message" class="mt-2 text-sm text-gray-600">Fitur upload hanya untuk admin.</p>
-        </div>
-
-        <div id="gallery-upload-section" class="mb-6 hidden rounded-2xl border border-gray-200 bg-gray-50 p-4">
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <label class="flex cursor-pointer items-center gap-2 rounded-full bg-teal-800 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700 transition">
-              <span>Upload Foto</span>
-              <input id="gallery-upload" type="file" accept="image/*" class="hidden" />
-            </label>
-            <p class="text-sm text-gray-600">Foto yang Anda upload akan tampil di galeri ini langsung.</p>
-          </div>
-        </div>
-
-        <div id="gallery-preview" class="mb-6 hidden rounded-2xl border border-dashed border-gray-300 bg-gray-50 p-3"></div>
         <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6"></div>
       </div>
     </section>
@@ -294,68 +274,12 @@
 
     <script>
       const galleryGrid = document.getElementById('gallery-grid');
-      const galleryUpload = document.getElementById('gallery-upload');
-      const galleryUploadSection = document.getElementById('gallery-upload-section');
-      const galleryPreview = document.getElementById('gallery-preview');
-      const galleryPassword = document.getElementById('gallery-password');
-      const galleryLoginBtn = document.getElementById('gallery-login-btn');
-      const galleryLogoutBtn = document.getElementById('gallery-logout-btn');
-      const galleryAuthMessage = document.getElementById('gallery-auth-message');
-      const storageKey = 'happy-pogot-gallery-items';
-      const authStorageKey = 'happy-pogot-gallery-auth';
-      const adminPassword = 'happy-pogot-admin';
-
-      function getStoredGalleryItems() {
-        try {
-          const stored = localStorage.getItem(storageKey);
-          return stored ? JSON.parse(stored) : [];
-        } catch (error) {
-          return [];
-        }
-      }
-
-      function saveGalleryItems(items) {
-        localStorage.setItem(storageKey, JSON.stringify(items));
-      }
-
-      function setUploadAccess(isAllowed) {
-        if (galleryUploadSection) {
-          galleryUploadSection.classList.toggle('hidden', !isAllowed);
-        }
-        if (galleryLogoutBtn) {
-          galleryLogoutBtn.classList.toggle('hidden', !isAllowed);
-        }
-        if (galleryAuthMessage) {
-          galleryAuthMessage.textContent = isAllowed
-            ? 'Upload aktif. Foto yang Anda pilih akan tampil di galeri.'
-            : 'Fitur upload hanya untuk admin.';
-        }
-      }
-
-      function isAuthenticated() {
-        return sessionStorage.getItem(authStorageKey) === 'true';
-      }
-
-      function authenticate() {
-        if (galleryPassword?.value === adminPassword) {
-          sessionStorage.setItem(authStorageKey, 'true');
-          setUploadAccess(true);
-          if (galleryPassword) galleryPassword.value = '';
-        } else if (galleryAuthMessage) {
-          galleryAuthMessage.textContent = 'Password salah. Fitur upload hanya untuk admin.';
-        }
-      }
-
-      function logout() {
-        sessionStorage.removeItem(authStorageKey);
-        setUploadAccess(false);
-      }
 
       function renderGallery(items) {
         if (!galleryGrid) return;
 
         if (!Array.isArray(items) || items.length === 0) {
-          galleryGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">Belum ada foto galeri. Upload foto pertama Anda sekarang.</p>';
+          galleryGrid.innerHTML = '<p class="col-span-full text-center text-gray-500">Belum ada foto galeri.</p>';
           return;
         }
 
@@ -373,44 +297,13 @@
       async function loadGallery() {
         try {
           const response = await fetch('gallery/manifest.json');
-          const manifestItems = response.ok ? await response.json() : [];
-          const storedItems = getStoredGalleryItems();
-          const items = [...(Array.isArray(manifestItems) ? manifestItems : []), ...storedItems];
-          renderGallery(items);
+          const items = response.ok ? await response.json() : [];
+          renderGallery(Array.isArray(items) ? items : []);
         } catch (error) {
-          renderGallery(getStoredGalleryItems());
+          renderGallery([]);
         }
       }
 
-      if (galleryLoginBtn) {
-        galleryLoginBtn.addEventListener('click', authenticate);
-      }
-
-      if (galleryLogoutBtn) {
-        galleryLogoutBtn.addEventListener('click', logout);
-      }
-
-      if (galleryUpload) {
-        galleryUpload.addEventListener('change', (event) => {
-          const file = event.target.files?.[0];
-          if (!file) return;
-
-          const reader = new FileReader();
-          reader.onload = () => {
-            const src = reader.result;
-            const nextItems = [{ src, alt: file.name }, ...getStoredGalleryItems()];
-            saveGalleryItems(nextItems);
-            renderGallery(nextItems);
-            if (galleryPreview) {
-              galleryPreview.innerHTML = '<div class="aspect-square max-w-[180px] overflow-hidden rounded-xl border border-gray-300 bg-white"><img src="' + src + '" alt="Preview foto" class="h-full w-full object-cover" /></div>';
-              galleryPreview.classList.remove('hidden');
-            }
-          };
-          reader.readAsDataURL(file);
-        });
-      }
-
-      setUploadAccess(isAuthenticated());
       loadGallery();
     </script>
   </body>
