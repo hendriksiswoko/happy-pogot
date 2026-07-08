@@ -1,8 +1,8 @@
 [
-  { "src": "gallery/1.jpg", "alt": "Pemancing lokal memegang hasil tangkapan di laut" },
-  { "src": "gallery/2.jpg", "alt": "Perahu pemancing tradisional di pantai" },
-  { "src": "gallery/3.jpg", "alt": "Hasil tangkapan ikan segar dari trip mancing" },
-  { "src": "gallery/4.jpg", "alt": "Aktivitas memancing di perairan Indonesia" },
-  { "src": "gallery/5.jpg", "alt": "Pemancing lokal menyiapkan alat pancing" },
-  { "src": "gallery/6.jpg", "alt": "Suasana trip mancing dengan hasil tangkapan ikan" }
+  { "src": "gallery/gallery.1.jpg", "alt": "Pemancing lokal memegang hasil tangkapan di laut" },
+  { "src": "gallery/gallery.2.jpg", "alt": "Perahu pemancing tradisional di pantai" },
+  { "src": "gallery/gallery.3.jpg", "alt": "Hasil tangkapan ikan segar dari trip mancing" },
+  { "src": "gallery/gallery.4.jpg", "alt": "Aktivitas memancing di perairan Indonesia" },
+  { "src": "gallery/gallery.5.jpg", "alt": "Pemancing lokal menyiapkan alat pancing" },
+  { "src": "gallery/gallery.6.jpg", "alt": "Suasana trip mancing dengan hasil tangkapan ikan" }
 ]
